@@ -10,6 +10,7 @@ $route['authenticate'] = 'AuthController/authenticate';
 $route['dashboard'] = 'DashboardController';
 $route['logout'] = 'AuthController/logout'; 
 $route['admins'] = 'AdminController/index'; 
+$route['admins/changeStatus/(:num)/(:any)'] = 'AdminController/changeStatus/$1/$2';
 $route['categories'] = 'CategoryController';
 $route['subCategories'] = 'SubController';
 $route['products'] = 'ProductController';

@@ -54,7 +54,7 @@
                                 </button>
                               </div>
                               <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog" role="document">
+                                <div class="modal-dialog mt-3" role="document">
                                   <div class="modal-content">
                                     <div class="modal-header">
                                       <h3 class="modal-title text-primary" id="exampleModalLabel">Add Admin</h3>
@@ -140,14 +140,15 @@
                                           <td><?= $admin->email; ?></td>
                                           <td><img src="<?= base_url($admin->image); ?>" alt="Image" class="rounded-circle" width="50px" height="50px">
                                           </td>
-                                          <td><?= $admin->role == 1 ? '<button class="btn btn-primary">Admin</button>' : '<button class="btn btn-secondary text-white">Staff</button>'; ?></td>
-                                          <td><?= ($admin->status == 1) ? '<button class="btn btn-primary">Active</button>' : '<button class="btn btn-secondary text-white ">In Active</button>'; ?></td>
+                                          <td><?= $admin->role == 1 ? '<span class="badge bg-primary text-white">Admin</span>' : '<span class="badge bg-secondary text-white">Staff</span>'; ?></td>
+                                          <td>
+                                            <a href="<?= base_url('AdminController/changeStatus/' . $admin->id); ?>"
+                                              class="btn btn-sm <?= $admin->status == 1 ? 'btn-primary text-white' : 'btn-secondary text-white'; ?>">
+                                              <?= $admin->status == 1 ? 'Active' : 'InActive'; ?>
+                                            </a>
+                                          </td>
                                           <td><?= $admin->created_at; ?></td>
                                           <td>
-                                            <!-- Edit button with data-id for the selected admin -->
-
-
-                                            <!-- Trigger modal for editing admin -->
                                             <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#editAdminModal"
                                               onclick="editAdmin(<?= $admin->id ?>, '<?= $admin->name ?>', '<?= $admin->email ?>', '<?= $admin->role ?>', '<?= $admin->status ?>', '<?= $admin->image ?>')">
                                               <span class="fas fa-pen"></span>
@@ -164,7 +165,7 @@
 
                                   <!-- Modal for editing admin -->
                                   <div class="modal fade" id="editAdminModal" tabindex="-1" role="dialog" aria-labelledby="editAdminModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog" role="document">
+                                    <div class="modal-dialog mt-3" role="document">
                                       <div class="modal-content">
                                         <div class="modal-header">
                                           <h3 class="modal-title text-primary" id="editAdminModalLabel">Edit Admin</h3>
@@ -206,7 +207,6 @@
                                               </select>
                                             </div>
 
-
                                             <div class="col-md-12 mt-3">
                                               <label for="status" class="form-label text-capitalize">Status</label>
                                               <select class="form-control" id="admin_status" name="status">
@@ -247,9 +247,9 @@
       </div>
     </div>
   </div>
-  <?php $this->load->view('inc/footer')?>
-  <?php $this->load->view('inc/bottom')?>
-  
+  <?php $this->load->view('inc/footer') ?>
+  <?php $this->load->view('inc/bottom') ?>
+
 </body>
 
 </html>

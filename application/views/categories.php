@@ -55,7 +55,7 @@
                               </div>
                               <!-- Modal Code (your provided modal HTML) -->
                               <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog" role="document">
+                                <div class="modal-dialog" style="margin-top: 70px;" role="document">
                                   <div class="modal-content">
                                     <div class="modal-header">
                                       <h3 class="modal-title text-primary" id="exampleModalLabel">Add Category</h3>
@@ -106,7 +106,6 @@
                                     <thead class="text-uppercase">
                                       <tr>
                                         <th class="text-center">#</th>
-                                        <th class="text-center">Id</th>
                                         <th class="text-center">Name</th>
                                         <th class="text-center">Image</th>
                                         <th class="text-center">Status</th>
@@ -119,7 +118,6 @@
                                       <?php foreach ($categories as $category): ?>
                                         <tr>
                                           <td class="text-center"><?= $sr++; ?></td>
-                                          <td class="text-center"><?= $category['id'] ?></td>
                                           <td class="text-center"><?= $category['name'] ?></td>
                                           <td class="text-center">
                                             <!-- Display the category image -->
@@ -153,7 +151,7 @@
 
                                   <!-- Modal for editing admin -->
                                   <div class="modal fade" id="editAdminModal" tabindex="-1" role="dialog" aria-labelledby="editAdminModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog" role="document">
+                                    <div class="modal-dialog" style="margin-top: 70px;" role="document">
                                       <div class="modal-content">
                                         <div class="modal-header">
                                           <h3 class="modal-title text-primary" id="editAdminModalLabel">Edit Category</h3>

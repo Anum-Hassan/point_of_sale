@@ -6,7 +6,7 @@ class DashboardController extends MY_Controller
     public function __construct() 
     {
         parent::__construct();
-        $this->load->helper('url'); // Load helper here instead of inside the method
+        $this->load->helper('url'); 
     }
 
     public function index() 

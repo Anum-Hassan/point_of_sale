@@ -13,6 +13,11 @@ class SubCategoryModel extends CI_Model {
         return $query->result_array();
     }
 
+    public function getAllCategories()
+    {
+        $query = $this->db->get('categories'); 
+        return $query->result_array();
+    }
     // Insert a new sub-category
     public function insertSubCategory($data)
     {

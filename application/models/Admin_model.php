@@ -1,7 +1,8 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
-class Admin_model extends CI_Model {
+class Admin_model extends CI_Model
+{
 
     public function __construct()
     {
@@ -16,44 +17,46 @@ class Admin_model extends CI_Model {
         $query = $this->db->get('admins');  // Get data from 'admins' table
         return $query->result();  // Return the result as an array of objects
     }
- 
-   
+
+
     // Method to insert admin data
-    public function insert_admin($admin_data) {
+    public function insert_admin($admin_data)
+    {
         return $this->db->insert('admins', $admin_data);
     }
 
+    // Delete admin by id
+    public function delete_admin($id)
+    {
+        $this->db->where('id', $id);
+        return $this->db->delete('admins');
+    }
 
-// Update admin by id
+    // Fetch admins with the latest one first (ordering by id desc)
+    public function get_all_admins()
+    {
+        $this->db->order_by('id', 'DESC'); // Order by id (latest first)
+        return $this->db->get('admins')->result();
+    }
 
+    public function updateAdminStatus($id, $data)
+    {
+        $this->db->where('id', $id);
+        return $this->db->update('admins', $data);
+    }
 
-// Delete admin by id
-public function delete_admin($id) {
-    $this->db->where('id', $id);
-    return $this->db->delete('admins');
-}
+    public function get_admin_by_id($id)
+    {
+        $this->db->where('id', $id);
+        $query = $this->db->get('admins');
+        return $query->row();  
+    }
 
-// Fetch admins with the latest one first (ordering by id desc)
-public function get_all_admins() {
-    $this->db->order_by('id', 'DESC'); // Order by id (latest first)
-    return $this->db->get('admins')->result();
-}
-
-
-
-public function get_admin_by_id($id) {
-    $this->db->where('id', $id);
-    $query = $this->db->get('admins');
-    return $query->row();  // Returns a single row based on ID
-}
-
-// Update admin data
-public function update_admin($id, $admin_data) {
-    $this->db->where('id', $id);
-    return $this->db->update('admins', $admin_data);
-}
-
-// Get all admins
-
+    // Update admin data
+    public function update_admin($id, $admin_data)
+    {
+        $this->db->where('id', $id);
+        return $this->db->update('admins', $admin_data);
+    }
 
 }
