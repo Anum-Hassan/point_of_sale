@@ -1,0 +1,8 @@
+.msg{
+    max-width: 300px;
+    z-index: 99;
+}
+
+.header__menu ul li a.zeenat:active {
+	color: #7fad39 !important;
+}

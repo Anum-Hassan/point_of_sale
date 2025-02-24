@@ -1,0 +1,62 @@
+<!-- Your other head content goes here -->
+<script src="assets/js/admin.js"></script>
+<script src="assets/js/category.js"></script>
+<!-- plugins:js -->
+<script src="assets/vendors/js/vendor.bundle.base.js"></script>
+<!-- endinject -->
+<!-- Plugin js for this page -->
+<script src="assets/vendors/chart.js/Chart.min.js"></script>
+<script src="assets/vendors/datatables.net/jquery.dataTables.js"></script>
+<script src="assets/vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
+<script src="assets/js/dataTables.select.min.js"></script>
+
+<!-- End plugin js for this page -->
+<!-- inject:js -->
+<script src="assets/js/off-canvas.js"></script>
+<script src="assets/js/hoverable-collapse.js"></script>
+<script src="assets/js/template.js"></script>
+<script src="assets/js/settings.js"></script>
+<script src="assets/js/todolist.js"></script>
+<!-- endinject -->
+<!-- Custom js for this page-->
+<script src="assets/js/dashboard.js"></script>
+<script src="assets/js/Chart.roundedBarCharts.js"></script>
+<script src="https://cdn.datatables.net/2.2.1/js/dataTables.min.js"></script>
+<script>
+    let table = new DataTable('#myTable');
+</script>
+<script>
+    $('#myModal').on('shown.bs.modal', function() {
+        $('#myInput').trigger('focus')
+    })
+</script>
+<script>
+    $('#adminForm').submit(function(e) {
+        e.preventDefault(); 
+
+        var formData = new FormData(this); 
+
+        $.ajax({
+            url: '<?= base_url('AdminController/insert'); ?>',
+            type: 'POST',
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function(response) {
+                if (response.success) {
+                    $('#exampleModal').modal('hide'); 
+                    $('#myTable tbody').append(response.new_row); 
+                } else {
+                    alert('Error adding admin');
+                }
+            },
+            error: function() {
+                alert('Error processing your request');
+            }
+        });
+    });
+</script>
+<!-- End custom js for this page-->
+</body>
+
+</html>
