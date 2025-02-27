@@ -13,9 +13,9 @@ class SubCategoryModel extends CI_Model {
         return $query->result_array();
     }
 
-    public function getAllCategories()
+    public function getActiveCategories()
     {
-        $query = $this->db->get('categories'); 
+        $query = $this->db->get_where('categories', ['status' => 1]); 
         return $query->result_array();
     }
     // Insert a new sub-category

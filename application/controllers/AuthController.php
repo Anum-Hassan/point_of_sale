@@ -99,7 +99,7 @@ class AuthController extends MY_Controller
             if ($admin) {
                 $admin_data = [
                     'admin_id' => $admin->id,
-                    'username' => $admin->username,
+                    'name' => $admin->name,
                     'email' => $admin->email,
                     'role' => $admin->role,
                     'image' => $admin->image,
@@ -107,7 +107,7 @@ class AuthController extends MY_Controller
                 ];
                 $this->session->set_userdata($admin_data);
 
-                $this->session->set_flashdata('success', 'Login successful! Welcome, ' . $admin->username);
+                $this->session->set_flashdata('success', 'Login successful! Welcome, ' . $admin->name);
                 redirect('dashboard');
             } else {
                 $this->session->set_flashdata('error', 'Invalid username or password.');

@@ -35,16 +35,14 @@
               <i class="icon-grid-2 menu-icon"></i>
               <span class="menu-title">Products</span>
             </a>
-
           </li>
+          
           <li class="nav-item">
-            <a class="nav-link" href="<?= base_url('OrderController'); ?>">
+            <a class="nav-link" href="<?= base_url('sales'); ?>">
               <i class="icon-contract menu-icon"></i>
-              <span class="menu-title">Orders</span>
+              <span class="menu-title">Sales</span>
             </a>
-
           </li>
-
 
           <li class="nav-item">
             <a class="nav-link" href="<?= base_url('UserController'); ?>">

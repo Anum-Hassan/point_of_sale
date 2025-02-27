@@ -9,6 +9,7 @@ class AuthModel extends CI_Model {
     public function check_admin_login($email, $password)
     {
         $this->db->where('email', $email);
+        $this->db->where('status', 1);
         $query = $this->db->get('admins');
 
         if ($query->num_rows() == 1) {

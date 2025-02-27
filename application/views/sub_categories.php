@@ -1,14 +1,13 @@
 <?php $this->load->view('inc/top') ?>
 
 <body>
-  <div class="container-scroller">
-    <!-- partial:partials/_navbar.html -->
+    
     <?php $this->load->view('inc/nav') ?>
-    <!-- partial -->
+    
     <div class="container-fluid page-body-wrapper">
-      <!-- partial:partials/_sidebar.html -->
+
       <?php $this->load->view('inc/sidebar') ?>
-      <!-- partial -->
+      
       <div class="main-panel">
         <div class="content-wrapper ">
           <div class="card-header bg-transparent">
@@ -249,6 +248,4 @@
         }
       }
     </script>
-
-
 </body>

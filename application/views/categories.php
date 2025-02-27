@@ -120,14 +120,13 @@
                                           <td class="text-center"><?= $sr++; ?></td>
                                           <td class="text-center"><?= $category['name'] ?></td>
                                           <td class="text-center">
-                                            <!-- Display the category image -->
                                             <img src="<?= base_url('uploads/categories/' . $category['image']); ?>" alt="" height="60px" width="60px" class="rounded-circle">
                                           </td>
                                           <td>
                                             <?php if ($category['status'] == 1): ?>
-                                              <a href="<?= base_url('CategoryController/changeStatus/' . $category['id'] . '/0') ?>" class="btn btn-primary text-white">Published</a>
+                                              <a href="<?= base_url('CategoryController/changeStatus/' . $category['id'] . '/0') ?>" class="btn btn-sm btn-primary text-white">Published</a>
                                             <?php else: ?>
-                                              <a href="<?= base_url('CategoryController/changeStatus/' . $category['id'] . '/1') ?>" class="btn btn-secondary text-white">Unpublished</a>
+                                              <a href="<?= base_url('CategoryController/changeStatus/' . $category['id'] . '/1') ?>" class="btn btn-sm btn-secondary text-white">Unpublished</a>
                                             <?php endif; ?>
                                           </td>
                                           <td>
