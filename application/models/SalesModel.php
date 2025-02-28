@@ -18,7 +18,7 @@ class SalesModel extends CI_Model {
     }
 
     public function insertSaleItem($data) {
-        return $this->db->insert('sales', $data);
+        return $this->db->insert('sales_items', $data);
     }
 
     public function updateSaleStatus($id, $data)
@@ -30,10 +30,17 @@ class SalesModel extends CI_Model {
         $this->db->where('id', $id);
         return $this->db->update('sales', $data);
     }
+    public function updateSaleItem($id, $data) {
+        $this->db->where('id', $id);
+        return $this->db->update('sales_items', $data);
+    }
 
     // Get a specific sale by ID
     public function getSaleById($sale_id) {
         return $this->db->get_where('sales', ['id' => $sale_id])->row_array();
+    }
+    public function getASaleById($sale_id) {
+        return $this->db->get_where('sales', ['id' => $sale_id])->row();
     }
 
     // Fetch sale items for a specific sale

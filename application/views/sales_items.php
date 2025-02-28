@@ -75,7 +75,7 @@
                                   <td>
                                     <button class="btn btn-outline-primary btn-sm"
                                       data-toggle="modal"
-                                      data-target="#editSaleItemModal"
+                                      data-target="#editSaleModal"
                                       onclick="editSaleItem(<?= $item['id'] ?>, <?= $item['sale_id'] ?>, <?= $item['product_id'] ?>, <?= $item['quantity'] ?>, <?= $item['price'] ?>, <?= $item['total'] ?>)">
                                       <span class="fas fa-pen"></span>
                                     </button>
@@ -91,7 +91,7 @@
 
                           <!-- Modal for Adding Sale Item -->
                           <div class="modal fade" id="addSaleItemModal" tabindex="-1" role="dialog" aria-labelledby="addSaleItemModalLabel" aria-hidden="true">
-                            <div class="modal-dialog mt-1" role="document">
+                            <div class="modal-dialog mt-5" role="document">
                               <div class="modal-content">
                                 <div class="modal-header">
                                   <h3 class="modal-title text-primary" id="addSaleItemModalLabel">Add Sale Item</h3>
@@ -144,6 +144,64 @@
 
                                     <div class="modal-footer mt-3">
                                       <button type="submit" class="btn btn-primary">Add Item</button>
+                                    </div>
+                                  </form>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="modal fade" id="editSaleModal" tabindex="-1" role="dialog" aria-labelledby="editSaleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog mt-5" role="document">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h3 class="modal-title text-primary" id="editProductModalLabel">Edit Sale Item</h3>
+                                  <button type="button" class="btn btn-sm btn-secondary fas fa-times" data-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                  <!-- Form for Editing Sale -->
+                                  <form action="<?= base_url('SalesController/updateItem') ?>" method="POST">
+                                    <input type="hidden" name="id" id="edit_id"> 
+                                    <div class="row">
+                                      <div class="col-md-6 mt-3">
+                                        <label for="edit_sale_id" class="form-label">Sale ID</label>
+                                        <input type="number" name="sale_id" id="edit_sale_id" class="form-control" placeholder="Sale ID" readonly>
+                                      </div>
+
+                                      <div class="col-md-6 mt-3">
+                                        <label for="edit_product_id" class="form-label">Product</label>
+                                        <select name="product_id" id="edit_product_id" class="form-control">
+                                          <option value="">Select Product</option>
+                                          <?php foreach ($products as $product): ?>
+                                            <option value="<?= $product['id'] ?>" data-price="<?= $product['price'] ?>">
+                                              <?= $product['name'] ?>
+                                            </option>
+                                          <?php endforeach; ?>
+                                        </select>
+                                      </div>
+                                    </div>
+
+                                    <div class="row">
+                                      <div class="col-md-6 mt-3">
+                                        <label for="edit_quantity" class="form-label">Quantity</label>
+                                        <input type="number" name="quantity" id="edit_quantity" class="form-control" placeholder="Quantity">
+                                      </div>
+
+                                      <div class="col-md-6 mt-3">
+                                        <label for="edit_price" class="form-label">Price</label>
+                                        <input type="number" name="price" id="edit_price" class="form-control" placeholder="Price">
+                                      </div>
+                                    </div>
+
+                                    <div class="row">
+                                      <div class="col-md-6 mt-3">
+                                        <label for="edit_total" class="form-label">Total</label>
+                                        <input type="number" name="total" id="edit_total" class="form-control" placeholder="Total" readonly>
+                                      </div>
+                                    </div>
+
+                                    <div class="modal-footer mt-3">
+                                      <button type="submit" class="btn btn-primary">Update Item</button>
                                     </div>
                                   </form>
                                 </div>
@@ -212,12 +270,13 @@
     });
 
     function editSaleItem(id, sale_id, product_id, quantity, price, total) {
-      $('#editSaleItemModal').modal('show');
+      $('#edit_id').val(id);
       $('#edit_sale_id').val(sale_id);
       $('#edit_product_id').val(product_id);
       $('#edit_quantity').val(quantity);
       $('#edit_price').val(price);
       $('#edit_total').val(total);
+      $('#editSaleModal').modal('show');
     }
 
     $('#quantity, #price').on('input', function() {

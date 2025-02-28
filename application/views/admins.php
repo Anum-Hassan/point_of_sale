@@ -92,7 +92,7 @@
                                           <label for="role" class="form-label text-capitalize">Role</label>
                                           <select class="form-control" id="role" name="role" required>
                                             <option value="admin" <?= set_select('role', 'admin'); ?>>Admin</option>
-                                            <option value="staff" <?= set_select('role', 'staff'); ?>>Staff</option>
+                                            <option value="manager" <?= set_select('role', 'manager'); ?>>Manager</option>
                                           </select>
                                           <?= form_error('role'); ?>
                                         </div>
@@ -140,7 +140,7 @@
                                           <td><?= $admin->email; ?></td>
                                           <td><img src="<?= base_url($admin->image); ?>" alt="Image" class="rounded-circle" width="50px" height="50px">
                                           </td>
-                                          <td><?= $admin->role == 1 ? '<span class="badge bg-primary text-white">Admin</span>' : '<span class="badge bg-secondary text-white">Staff</span>'; ?></td>
+                                          <td><?= $admin->role == 1 ? '<span class="badge bg-primary text-white">Admin</span>' : '<span class="badge bg-secondary text-white">Manager</span>'; ?></td>
                                           <td>
                                             <a href="<?= base_url('AdminController/changeStatus/' . $admin->id); ?>"
                                               class="btn btn-sm <?= $admin->status == 1 ? 'btn-primary text-white' : 'btn-secondary text-white'; ?>">
@@ -153,7 +153,6 @@
                                               onclick="editAdmin(<?= $admin->id ?>, '<?= $admin->name ?>', '<?= $admin->email ?>', '<?= $admin->role ?>', '<?= $admin->status ?>', '<?= $admin->image ?>')">
                                               <span class="fas fa-pen"></span>
                                             </button>
-
 
                                             <!-- Delete button -->
                                             <a href="<?= base_url('AdminController/delete/' . $admin->id); ?>" class="btn btn-danger btn-sm" onclick="return confirm('Are You Sure?');"><span class="fas fa-trash"></span></a>
@@ -203,7 +202,7 @@
                                               <label for="role" class="form-label text-capitalize">Role</label>
                                               <select class="form-control" id="admin_role" name="role">
                                                 <option value="admin" <?= (['role'] == 'admin') ? 'selected' : ''; ?>>Admin</option>
-                                                <option value="staff" <?= (['role'] == 'staff') ? 'selected' : ''; ?>>Staff</option>
+                                                <option value="manager" <?= (['role'] == 'manager') ? 'selected' : ''; ?>>Manager</option>
                                               </select>
                                             </div>
 

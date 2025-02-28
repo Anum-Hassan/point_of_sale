@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class SalesController extends CI_Controller
+class SalesController extends MY_Controller
 {
 
     public function __construct()
@@ -140,7 +140,7 @@ class SalesController extends CI_Controller
             'total' => $this->input->post('quantity') * $this->input->post('price')
         ];
 
-        $this->SalesModel->update_sale($id, $data);
+        $this->SalesModel->updateSaleItem($id, $data);
         redirect('sales/items/' . $this->input->post('sale_id'));
     }
 

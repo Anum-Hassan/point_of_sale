@@ -32,7 +32,7 @@ class AuthController extends MY_Controller
             exit;
         }
     }
-    
+
     // public function register()
     // {
     //     $this->form_validation->set_rules('name', 'Name', 'trim|required|min_length[3]|max_length[20]');
@@ -114,6 +114,58 @@ class AuthController extends MY_Controller
                 redirect('login');
             }
         }
+    }
+
+    public function updateProfile()
+    {
+        $id = $this->input->post('id');
+        $name = $this->input->post('name');
+        $email = $this->input->post('email');
+        $password = $this->input->post('password');
+        $old_image = $this->input->post('old_image');
+
+        $update_data = [
+            'name' => $name,
+            'email' => $email
+        ];
+
+        // If password is provided, hash and update
+        if (!empty($password)) {
+            $update_data['password'] = password_hash($password, PASSWORD_DEFAULT);
+        }
+
+        // Handle Image Upload
+        if (!empty($_FILES['image']['name'])) {
+            $config['upload_path']   = './uploads/admins/';
+            $config['allowed_types'] = 'jpg|jpeg|png|gif';
+            $config['max_size']      = 2048;
+            $config['file_name']     = time() . '_' . $_FILES["image"]["name"];
+
+            $this->load->library('upload', $config);
+
+            if ($this->upload->do_upload('image')) {
+                // Delete old image if it exists
+                if ($old_image && file_exists($old_image)) {
+                    unlink($old_image);
+                }
+
+                $uploadData = $this->upload->data();
+                $update_data['image'] = 'uploads/admins/' . $uploadData['file_name'];
+            } else {
+                $this->session->set_flashdata('error', $this->upload->display_errors());
+                redirect('dashboard');
+            }
+        }
+
+        // Update in database
+        $this->db->where('id', $id);
+        $this->db->update('admins', $update_data);
+
+        // Update session data
+        $this->session->set_userdata($update_data);
+
+        $this->session->set_flashdata('success', 'Profile updated successfully!');
+        redirect('dashboard');
     }
 
     // Logout functionality

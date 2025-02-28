@@ -17,3 +17,4 @@ $route['sales'] = 'SalesController';
 // $route['sales_items'] = 'SalesController/viewSalesItems/$1';
 $route['sales/items/(:num)'] = 'SalesController/viewSalesItems/$1';
 $route['category/add-sub-category'] = 'CategoryController/add_sub_category';
+// $routes->get('/invoice', 'InvoiceController::generateInvoice');

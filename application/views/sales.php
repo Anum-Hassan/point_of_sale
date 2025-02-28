@@ -78,15 +78,25 @@
                                 </td>
                                 <td><?= $sale['created_at']; ?></td>
                                 <td>
-                                  <a href="<?= base_url('sales/items/' . $sale['id']); ?>" class="btn btn-outline-primary btn-sm"><span class="fas fa-eye"></span></a>
-                                  <button class="btn btn-outline-dark btn-sm"
-                                    data-toggle="modal"
-                                    data-target="#editSaleModal"
-                                    onclick="editSaleItem('<?= $sale['id'] ?>', '<?= $sale['invoice_no'] ?>', '<?= $sale['total_amount'] ?>', '<?= $sale['discount'] ?>', '<?= $sale['tax'] ?>', '<?= $sale['payment_method'] ?>')"><span class="fas fa-pen"></span></button>
-
-                                    <a href="<?= base_url('SalesController/delete/' . $sale['id']); ?>" class="btn btn-outline-danger btn-sm" onclick="return confirm('Are you sure?');">
-                                      <span class="fas fa-trash"></span>
+                                  <div class="d-flex gap-2">
+                                    <a href="<?= base_url('sales/items/' . $sale['id']); ?>" class="btn btn-outline-primary btn-sm">
+                                      <span class="fas fa-eye"></span>
                                     </a>
+                                    <button class="btn btn-outline-dark btn-sm"
+                                      data-toggle="modal"
+                                      data-target="#editSaleModal"
+                                      onclick="editSaleItem('<?= $sale['id'] ?>', '<?= $sale['invoice_no'] ?>', '<?= $sale['total_amount'] ?>', '<?= $sale['discount'] ?>', '<?= $sale['tax'] ?>', '<?= $sale['payment_method'] ?>')">
+                                      <span class="fas fa-pen"></span>
+                                    </button>
+                                  </div>
+
+                                  <a href="<?= base_url('InvoiceController/generateInvoice/' . $sale['id']); ?>" target="_blank" class="btn btn-outline-warning btn-sm">
+                                    <span class="fas fa-file-pdf"></span>
+                                  </a>
+
+                                  <a href="<?= base_url('SalesController/delete/' . $sale['id']); ?>" class="btn btn-outline-danger btn-sm" onclick="return confirm('Are you sure?');">
+                                    <span class="fas fa-trash"></span>
+                                  </a>
                                 </td>
                               </tr>
                             <?php endforeach; ?>
@@ -94,7 +104,7 @@
                         </table>
 
                         <div class="modal fade" id="addSaleModal" tabindex="-1" role="dialog" aria-labelledby="addSaleModalLabel" aria-hidden="true">
-                          <div class="modal-dialog mt-1" role="document">
+                          <div class="modal-dialog mt-5" role="document">
                             <div class="modal-content">
                               <div class="modal-header">
                                 <h3 class="modal-title text-primary" id="addSaleItemModalLabel">Add Sale Record</h3>
@@ -149,7 +159,7 @@
                         </div>
 
                         <div class="modal fade" id="editSaleModal" tabindex="-1" role="dialog" aria-labelledby="editSaleModalLabel" aria-hidden="true">
-                          <div class="modal-dialog mt-1" role="document">
+                          <div class="modal-dialog mt-5" role="document">
                             <div class="modal-content">
                               <div class="modal-header">
                                 <h3 class="modal-title text-primary" id="editProductModalLabel">Edit Sale Record</h3>

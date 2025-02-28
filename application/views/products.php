@@ -8,7 +8,7 @@
 
     <?php $this->load->view('inc/sidebar') ?>
 
-    <div class="main-panel">
+    <div class="main-panel" >
       <div class="content-wrapper ">
         <div class="card-header bg-transparent">
           <h3 class="text-primary">Products</h3>
